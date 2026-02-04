@@ -6,6 +6,7 @@ class FoodAnalysis {
   final String label;         // "healthy" | "not_healthy" | "uncertain"
   final int score;            // 0..10
   final String action;        // "eat" | "limit" | "avoid"
+  final String calories;
   final List<String> reasons; // short bullets
   final List<String> tips;    // safer swaps
 
@@ -13,6 +14,7 @@ class FoodAnalysis {
     required this.label,
     required this.score,
     required this.action,
+    required this.calories,
     required this.reasons,
     required this.tips,
   });
@@ -22,6 +24,7 @@ class FoodAnalysis {
       label: (j["label"] ?? "uncertain").toString(),
       score: (j["score"] is int) ? j["score"] : int.tryParse("${j["score"]}") ?? 0,
       action: (j["action"] ?? "limit").toString(),
+      calories: (j["calories"] ?? "limit" ).toString(),
       reasons: (j["reasons"] as List?)?.map((e) => "$e").toList() ?? const [],
       tips: (j["tips"] as List?)?.map((e) => "$e").toList() ?? const [],
     );
@@ -50,6 +53,7 @@ Return ONLY valid JSON (no markdown) with exactly:
   "label": "healthy" | "not_healthy" | "uncertain",
   "score": 0-10,
   "action": "eat" | "limit" | "avoid",
+  "calories":"...",
   "reasons": ["...","...","..."],
   "tips": ["...","..."]
 }
@@ -85,6 +89,7 @@ Rules:
         "label": "uncertain",
         "score": 0,
         "action": "limit",
+        "calories": "limit",
         "reasons": ["Could not parse the model response as JSON."],
         "tips": ["Try taking a clearer photo with good lighting."]
       });

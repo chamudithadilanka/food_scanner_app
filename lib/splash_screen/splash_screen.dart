@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_scannner/home_screen/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -46,9 +47,10 @@ class SplashScreen extends StatelessWidget {
 
           // Title Text with gradient effect
           ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [Color(0xFF4CAF50), Color(0xFF8BC34A)],
-            ).createShader(bounds),
+            shaderCallback:
+                (bounds) => const LinearGradient(
+                  colors: [Color(0xFF4CAF50), Color(0xFF8BC34A)],
+                ).createShader(bounds),
             child: const Text(
               "Explore, Scan and",
               style: TextStyle(
@@ -61,9 +63,10 @@ class SplashScreen extends StatelessWidget {
           ),
 
           ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [Color(0xFF4CAF50), Color(0xFF8BC34A)],
-            ).createShader(bounds),
+            shaderCallback:
+                (bounds) => const LinearGradient(
+                  colors: [Color(0xFF4CAF50), Color(0xFF8BC34A)],
+                ).createShader(bounds),
             child: const Text(
               "Eat Healthy",
               style: TextStyle(
@@ -79,7 +82,7 @@ class SplashScreen extends StatelessWidget {
 
           // Subtitle
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Text(
               "Scan food products and discover their nutritional value instantly",
               textAlign: TextAlign.center,
@@ -91,17 +94,32 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
 
-          const Spacer(),
+          SizedBox(height:height *0.1),
 
           // Start Button
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: SizedBox(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Container(
               width: double.infinity,
               height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                boxShadow: [
+                  BoxShadow(
+                    color:  Color(0xFF4CAF50).withOpacity(0.8),
+                    spreadRadius: 1,
+                    blurRadius: 35,
+
+                  ),
+                ],
+                
+              ),
               child: ElevatedButton(
                 onPressed: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FoodScanPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF4CAF50),
